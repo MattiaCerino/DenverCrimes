@@ -3,8 +3,6 @@ package it.polito.tdp.crimes.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
@@ -14,7 +12,6 @@ import it.polito.tdp.crimes.db.EventsDao;
 public class Model {
 	private SimpleWeightedGraph<String, DefaultWeightedEdge> grafo;
 	private EventsDao dao;
-	
 	private List<String> best;
 	
 	public Model() {
@@ -29,7 +26,8 @@ public class Model {
 		return dao.getCategorie();
 	}
 	
-	
+	// Non ho creato una idMap perchè i vertici del grafo sono delle stringhe, che hanno già hashCode() e equals() e quindi non c'è il
+	// rischio di creare due vertici uguali
 	public void creaGrafo(String categoria, Integer mese) {
 		this.grafo = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
 		List<Adiacenza> adiacenze = this.dao.getAdiacenze(categoria, mese);

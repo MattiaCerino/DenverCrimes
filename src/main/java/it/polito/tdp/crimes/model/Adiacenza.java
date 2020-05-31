@@ -36,7 +36,4 @@ public class Adiacenza {
 	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
-	
-	
-	
 }

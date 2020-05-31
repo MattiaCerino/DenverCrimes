@@ -78,6 +78,10 @@ public class EventsDao {
 		}
 	}
 	
+	/**
+	 * Ottengo le categorie di reato che ci sono nella tabella
+	 * @return
+	 */
 	public List<String> getCategorie(){
 		String sql = "SELECT DISTINCT offense_category_id as categoria FROM events";
 		List<String> categorie = new LinkedList<>();
@@ -96,7 +100,13 @@ public class EventsDao {
 			return null ;
 		}
 	}
-
+	
+	/**
+	 * Ritorna una lista di adiacenze(due crimini diversi che si sono verificati nello stesso mese e nello stesso quartiere)
+	 * @param categoria tipo di crimine
+	 * @param mese mese di riferimento
+	 * @return
+	 */
 	public List<Adiacenza> getAdiacenze(String categoria, Integer mese) {
 		String sql = "select e1.offense_type_id as v1, e2.offense_type_id as v2, COUNT(DISTINCT(e1.neighborhood_id)) as peso " + 
 				"from events e1, events e2 " + 
@@ -126,8 +136,6 @@ public class EventsDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null ;
-		}
-		
+		}	
 	}
-
 }
